@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的简单网站</title>
+    <style>
+        /* 页面样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 顶部导航 */
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 主体内容 */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部 -->
+    <header>
+        <h1>欢迎来到我的简单网站</h1>
+    </header>
+
+    <!-- 中间内容 -->
+    <div class="container">
+        <div class="card">
+            <h2>这是一个内容卡片</h2>
+            <p>这是用 HTML + CSS 写的简单前端页面，适合新手学习。</p>
+            <p>你可以修改文字、颜色、图片，变成你自己的网站。</p>
+            <button onclick="showMsg()">点击我试试</button>
+        </div>
+
+        <div class="card">
+            <h2>第二个内容区域</h2>
+            <p>前端三要素：</p>
+            <ul>
+                <li>HTML — 结构</li>
+                <li>CSS — 样式</li>
+                <li>JavaScript — 交互</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer>
+        <p>© 2025 我的简单网站 | 前端入门示例</p>
+    </footer>
+
+    <script>
+        // JS 交互效果
+        function showMsg() {
+            alert("你成功点击了按钮！🎉");
+        }
+    </script>
+
+</body>
+</html>
