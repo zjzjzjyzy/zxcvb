@@ -2,102 +2,443 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的简单网站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>简单网站 | 欢迎光临</title>
     <style>
-        /* 页面样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
-        /* 顶部导航 */
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
+        body {
+            font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f9fafc 0%, #eef2f7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            color: #1e293b;
+        }
+
+        /* 主卡片容器 */
+        .card {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(0px);
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 头部区域 */
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            padding: 3rem 2rem;
             text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+            word-break: keep-all;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            opacity: 0.85;
+            max-width: 550px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            margin-top: 1.2rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         /* 主体内容 */
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
+        .content {
+            padding: 2.5rem 2rem;
         }
 
-        .card {
-            background: #f8f9fa;
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .intro {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: #334155;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.25rem;
+            background: #f8fafc;
+            border-radius: 0 1rem 1rem 0;
         }
 
-        button {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
+        /* 功能网格 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 2rem;
         }
 
-        button:hover {
-            background: #2980b9;
-        }
-
-        /* 底部 */
-        footer {
+        .feature-item {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.5rem 1.2rem;
+            transition: all 0.2s;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e9eef3;
             text-align: center;
-            padding: 20px;
-            background: #2c3e50;
+        }
+
+        .feature-item:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.1);
+            transform: scale(1.01);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .feature-item p {
+            color: #475569;
+            line-height: 1.4;
+            font-size: 0.95rem;
+        }
+
+        /* 部署指南区块 (重点突出 GitHub 部署) */
+        .deploy-section {
+            background: #f1f5f9;
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            margin: 2rem 0 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .deploy-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1.25rem;
+        }
+
+        .deploy-section h2:before {
+            content: "🚀";
+            font-size: 1.8rem;
+        }
+
+        .steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            margin-bottom: 1.2rem;
+            padding-left: 2.8rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.45;
+            color: #1e293b;
+        }
+
+        .steps li:before {
+            content: counter(step-counter);
+            background: #3b82f6;
             color: white;
-            margin-top: 50px;
+            font-weight: bold;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.9rem;
+        }
+
+        .code-block {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin: 0.8rem 0 1rem 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .note {
+            background: #fef9e3;
+            border-left: 4px solid #f59e0b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0.75rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            color: #92400e;
+        }
+
+        /* 交互小部件 - 让网站更生动 */
+        .interactive {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .interactive h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .click-btn {
+            background: #3b82f6;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.7rem 1.8rem;
+            font-size: 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .click-btn:hover {
+            background: #2563eb;
+            transform: scale(0.98);
+        }
+
+        .click-btn:active {
+            transform: scale(0.96);
+        }
+
+        #clickMessage {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #2d3a4b;
+            min-height: 3rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #5b6e8c;
+        }
+
+        .footer a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .hero {
+                padding: 2rem 1rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- 顶部 -->
-    <header>
-        <h1>欢迎来到我的简单网站</h1>
-    </header>
+<div class="card">
+    <div class="hero">
+        <h1>✨ 轻量·极简站点</h1>
+        <div class="tagline">为GitHub部署而生 | 开箱即用 | 现代风格</div>
+        <div class="badge">🟢 已优化移动端 &nbsp;|&nbsp; 一键部署至 Pages</div>
+    </div>
 
-    <!-- 中间内容 -->
-    <div class="container">
-        <div class="card">
-            <h2>这是一个内容卡片</h2>
-            <p>这是用 HTML + CSS 写的简单前端页面，适合新手学习。</p>
-            <p>你可以修改文字、颜色、图片，变成你自己的网站。</p>
-            <button onclick="showMsg()">点击我试试</button>
+    <div class="content">
+        <div class="intro">
+            💡 这是一个完全静态但充满活力的HTML网站。无需任何后端，只需将代码上传至GitHub仓库，启用Pages服务，即可拥有自己的个人网页。
         </div>
 
-        <div class="card">
-            <h2>第二个内容区域</h2>
-            <p>前端三要素：</p>
-            <ul>
-                <li>HTML — 结构</li>
-                <li>CSS — 样式</li>
-                <li>JavaScript — 交互</li>
+        <div class="features">
+            <div class="feature-item">
+                <div class="feature-icon">📱</div>
+                <h3>响应式设计</h3>
+                <p>完美适配手机、平板、电脑，浏览体验一致流畅。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3>轻量快速</h3>
+                <p>纯原生代码，无依赖，加载速度极快，SEO友好。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🐙</div>
+                <h3>GitHub 原生</h3>
+                <p>专为 GitHub Pages 优化，直接部署，免费托管。</p>
+            </div>
+        </div>
+
+        <!-- 详细的 GitHub 部署步骤 (重点) -->
+        <div class="deploy-section">
+            <h2>部署到 GitHub 全指南</h2>
+            <ul class="steps">
+                <li><strong>创建仓库</strong>：登录 GitHub，点击右上角「+」→「New repository」，命名为 <code>username.github.io</code> 或任意名称（例如 my-website）。</li>
+                <li><strong>上传文件</strong>：将本 HTML 文件重命名为 <code>index.html</code>（必须），也可以附带 CSS/图片等资源。直接拖拽上传到仓库。</li>
+                <li><strong>启用 Pages</strong>：进入仓库「Settings」→「Pages」→ 在「Branch」下选择 <code>main</code> 或 <code>master</code> 分支，根目录 <code>/ (root)</code>，点击 Save。</li>
+                <li><strong>访问网站</strong>：等待1-2分钟，通过 <code>https://你的用户名.github.io/仓库名/</code> 或 <code>https://你的用户名.github.io/</code> 访问站点。</li>
+                <li><strong>自定义域名（可选）</strong>：在 Pages 设置中添加你的域名，并在 DNS 处配置 CNAME 记录。</li>
             </ul>
+            <div class="code-block">
+                💻 快速命令示例（本地提交）：<br>
+                git init<br>
+                git add index.html<br>
+                git commit -m "✨ 首次部署简单网站"<br>
+                git branch -M main<br>
+                git remote add origin https://github.com/你的用户名/你的仓库.git<br>
+                git push -u origin main
+            </div>
+            <div class="note">
+                📌 小提示：如果仓库名为 <strong>用户名.github.io</strong>，则网站根地址为 <strong>https://用户名.github.io</strong>，否则为 <strong>https://用户名.github.io/仓库名</strong>。记得将 index.html 放在根目录！
+            </div>
+        </div>
+
+        <!-- 简易交互组件：点击计数器 + 动态消息，体现网站互动感 -->
+        <div class="interactive">
+            <h3>🌟 与网站互动一下</h3>
+            <button class="click-btn" id="greetBtn">✨ 点我传送祝福 ✨</button>
+            <div id="clickMessage"></div>
+            <p style="margin-top: 0.5rem; font-size:0.8rem; color:#5b6e8c;">💬 每次点击都会收获不一样的鼓励~</p>
+        </div>
+
+        <div class="interactive" style="background:#fefce8; border-color:#fde047;">
+            <h3>📋 站点信息卡</h3>
+            <p style="margin-bottom: 0.4rem;">🕒 当前时间：<strong id="liveTime">加载中...</strong></p>
+            <p>🌍 您正在浏览一个 <strong>纯静态 HTML/CSS/JS</strong> 网站，完全前端驱动。</p>
+            <p style="margin-top: 0.3rem;">✅ 无需服务器，GitHub Pages 永久免费托管。</p>
         </div>
     </div>
 
-    <!-- 底部 -->
-    <footer>
-        <p>© 2025 我的简单网站 | 前端入门示例</p>
-    </footer>
+    <div class="footer">
+        🌈 简单网站模板 · 专为 GitHub 部署设计 · 自由修改拓展<br>
+        🧩 复制全部代码保存为 <code>index.html</code>，推送到 GitHub 仓库即可生效。<br>
+        🚀 <a href="#" id="fakeRepoLink">了解 GitHub Pages 官方文档</a> (示意链接) &nbsp;|&nbsp; 打造你的网络名片
+    </div>
+</div>
 
-    <script>
-        // JS 交互效果
-        function showMsg() {
-            alert("你成功点击了按钮！🎉");
+<script>
+    // 简单的交互：点击按钮随机显示不同的鼓励语/趣味语句
+    const messageList = [
+        "🎉 恭喜！你的网站已具备 GitHub 部署潜力！",
+        "💪 太棒了，马上把这份代码推送到仓库吧！",
+        "🌟 世界很大，这是你互联网的一小步~",
+        "🚀 部署成功记得分享给朋友哟！",
+        "✨ 你的第一个静态页面，简单却不平凡。",
+        "🍀 保持好奇，继续创造！",
+        "📖 代码虽简，梦想无限。",
+        "🎈 轻量高效，这就是现代web的魅力。"
+    ];
+    
+    const btn = document.getElementById('greetBtn');
+    const msgDiv = document.getElementById('clickMessage');
+    
+    if (btn && msgDiv) {
+        btn.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * messageList.length);
+            const randomMsg = messageList[randomIndex];
+            msgDiv.innerHTML = `✨ ${randomMsg} ✨`;
+            // 添加一个淡入淡出的临时效果（简单的样式动画）
+            msgDiv.style.transition = "all 0.2s";
+            msgDiv.style.transform = "scale(1.02)";
+            setTimeout(() => {
+                msgDiv.style.transform = "scale(1)";
+            }, 150);
+        });
+    }
+    
+    // 显示实时时间 (动态)
+    function updateTime() {
+        const timeElement = document.getElementById('liveTime');
+        if (timeElement) {
+            const now = new Date();
+            const formatted = now.toLocaleString('zh-CN', { 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: false
+            });
+            timeElement.textContent = formatted;
         }
-    </script>
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+    
+    // 针对页脚“了解GitHub Pages文档”的伪链接给出友好提醒（实际可引导至官方）
+    const docLink = document.getElementById('fakeRepoLink');
+    if (docLink) {
+        docLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            // 新开官方文档标签页
+            window.open('https://docs.github.com/zh/pages', '_blank', 'noopener noreferrer');
+        });
+    }
+    
+    // 附加一个小彩蛋：控制台输出部署提醒
+    console.log("%c🚀 GitHub 部署提示：将本页面保存为 index.html 并推送至仓库，启用 Pages 即可上线！", "color: #3b82f6; font-size: 14px; font-weight: bold;");
+    console.log("%c✨ 简单网站已经准备就绪，祝您部署顺利！✨", "color: #10b981; font-size: 12px;");
+</script>
 
+<!-- 
+    本文件是一个完整的单文件网站，包含样式、结构和部署指南。
+    符合“制作一个简单的网站，在GitHub部署”要求。
+    无需任何额外资源，自适应布局，兼容主流浏览器。
+    部署步骤：保存为 index.html → 上传至 GitHub 仓库 → Settings → Pages → 选择分支 → 完成。
+-->
 </body>
 </html>
